@@ -12,7 +12,7 @@
       </h2>
       <div class="row">
         <div class="col-md-6">
-          <img height="400" :src="this.tmpProd.imageUrl" alt="" />
+          <img style="width:100%;height:400px;" :src="this.tmpProd.imageUrl" alt="" />
         </div>
         <div class="col-md-6" style="padding: 50px">
           <p>{{ this.tmpProd.content }}</p>
