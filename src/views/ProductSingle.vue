@@ -2,17 +2,17 @@
   <div>
     <div class="cover"></div>
 
-    <div
-      v-if="tmpProd.title"
-      class="container mt-5"
-      style="border: 2px solid wheat"
-    >
-      <h2 style="padding: 10px; background-color: wheat">
+    <div v-if="tmpProd.title" class="container mt-5">
+      <h3 style="background-color: wheat; padding: 10px">
         {{ this.tmpProd.title }}
-      </h2>
-      <div class="row">
+      </h3>
+      <div class="row" style="border: 2px solid wheat">
         <div class="col-md-6">
-          <img style="width:100%;height:400px;" :src="this.tmpProd.imageUrl" alt="" />
+          <img
+            style="width: 100%; height: 500px;object-fit:cover"
+            :src="this.tmpProd.imageUrl"
+            alt=""
+          />
         </div>
         <div class="col-md-6" style="padding: 50px">
           <p>{{ this.tmpProd.content }}</p>
@@ -46,7 +46,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .cover {
   width: 100%;
   min-height: 400px;
@@ -54,14 +54,10 @@
     url(https://images.unsplash.com/photo-1621462647729-e8543be91c0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)
       center/100%;
 }
-.container {
-  padding: 0;
-}
 
-img {
-  display: block;
-  margin: 20px auto;
-}
+// .container{
+//   padding: 0;
+// }
 </style>
 <script>
 import emitter from "@/methods/mitt";
@@ -90,13 +86,8 @@ export default {
           emitter.emit("un-loading");
         });
     },
-    testFunc() {
-      const { id } = this.$route.params;
-      alert(id);
-    },
     buyProd() {
-            emitter.emit("loading");
-
+      emitter.emit("loading");
       let tmpCart = {
         product_id: this.$route.params.id,
         qty: this.quantity,
@@ -106,31 +97,13 @@ export default {
       this.$http
         .post(url, { data: tmpCart })
         .then(() => {
-          alert('成功加入購物車！ :)');
+          alert("成功加入購物車！ :)");
           this.$router.push("/products/");
         })
         .catch((err) => {
           console.dir(err);
         });
     },
-
-    // addToCart(item, quantity = 1) {
-    //   emitter.emit("loading");
-    //   let tmpCart = {
-    //     product_id: item.id,
-    //     qty: quantity,
-    //   };
-    //   const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;
-    //   this.$http
-    //     .post(url, { data: tmpCart })
-    //     .then(() => {
-    //       emitter.emit("un-loading");
-    //     })
-    //     .catch((err) => {
-    //       console.dir(err);
-    //       emitter.emit("un-loading");
-    //     });
-    // },
   },
   mounted() {
     this.getProdData();
