@@ -133,8 +133,8 @@ export default {
     openModal(type, item) {
       const prodModalComp = this.$refs.productModal;
       const delModalComp = this.$refs.delModal;
-      this.tmpProd = item ? { ...item } : { ...this.fakeData };
-      // this.tmpProd = item ? { imagesUrl: [], ...item } : { imagesUrl: [] };
+      // this.tmpProd = item ? { ...item } : { ...this.fakeData };
+      this.tmpProd = item ? { imagesUrl: [], ...item } : { imagesUrl: [] };
 
       if (type == "add") {
         this.isNew = true;
