@@ -4,37 +4,36 @@
     <div class="container mt-5">
       <h2>酒單列表</h2>
 
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-5">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mt-5">
         <div class="col mb-3" v-for="item in products" :key="item.id">
           <div class="card" style="height: 100%">
             <div class="test" style="overflow: hidden; background-color: wheat">
+              <router-link :to="`/product/${item.id}`">
               <img
                 :src="item.imageUrl"
                 class="card-img-top"
-                style="height: 300px; object-fit: cover"
+                style="height: 300px; object-fit: contain;"
                 alt="..."
               />
+              </router-link>
             </div>
             <div class="card-body">
               <h5 class="card-title">{{ item.title }}</h5>
-              <p class="card-text" style="height: 4.5rem; overflow: hidden">
+              <!-- <p class="card-text" style="height: 4.5rem; overflow: hidden">
                 {{ item.content }}
-              </p>
+              </p>            -->
+            <div class="h5 mt-3">
+              NTD <b style="color: coral"> {{ item.price }} </b> 元
+            </div>
             </div>
             <div class="card-footer bg-light">
               <button
-                class="btn btn-warning d-inline-block"
+                type="button"
+                class="btn d-inline-block w-100"
                 style="width: 7rem; margin-right: 10px"
                 @click="addToCart(item)"
               >
                 加入購物車
-              </button>
-              <button
-                class="btn btn-info d-inline-block"
-                style="width: 7rem"
-                @click="checkProdInfo(item)"
-              >
-                商品詳情
               </button>
             </div>
           </div>
@@ -54,15 +53,32 @@
       center/100%;
 }
 
+
 .card img {
   transition: 0.3s all ease;
 }
 
+.card-title {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-footer{
+  padding: 0;
+  overflow: hidden;
+}
 .card:hover img {
-  transform: scale(1.4);
+  transform: scale(1.1);
+  filter: grayscale(50%);
+  background-color: brown;
 }
 .btn {
   transition: 0.3s all ease;
+  border-radius: 0;
+    background-color: coral;
+  color:whitesmoke
 }
 .btn:hover {
   transform: scale(1.15);
@@ -105,7 +121,9 @@ export default {
       this.$http
         .post(url, { data: tmpCart })
         .then(() => {
+          emitter.emit("update-qty");
           emitter.emit("un-loading");
+          // this.$pushToastMessage(response, "加入購物車"); 
         })
         .catch((err) => {
           console.dir(err);

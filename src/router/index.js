@@ -3,33 +3,44 @@ import { createRouter, createWebHashHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    component: () => import("../views/FrontSide.vue"),
+    component: () => import("../views/front/FrontSide.vue"),
     children: [
       {
         path: "",
-        component: () => import("../views/Home.vue"),
+        component: () => import("../views/front/Home.vue"),
       },
       {
         path: "products",
-        component: () => import("../views/ProductsFront.vue"),
+        component: () => import("../views/front/ProductsFront.vue"),
       },
       {
         path: "/product/:id",
-        component: () => import('../views/ProductSingle.vue'),
+        component: () => import('../views/front/ProductSingle.vue'),
+      },
+      {
+        path: "about",
+        component: () => import("../views/front/AboutPage.vue"),
       },
       {
         path: "orders",
-        component: () => import("../views/OrderSearch.vue"),
-        children:[
+        component: () => import("../views/front/paycheck/PayCheck.vue"),
+        children: [
+          {
+            name: "userinfo",
+            path: "userinfo",
+            component: () => import("../views/front/paycheck/UserInfo.vue"),
+          },
           {
             path: ":orderId",
-            component: () => import("../views/CustomerOrder.vue"),
+            component: () => import("../views/front/paycheck/CustomerOrder.vue"),
           },
+
         ]
       },
       {
-        path: "cart",
-        component: () => import("../views/Cart.vue"),
+        path: "/:pathMatch(.*)*",
+        component: () =>
+          import("../views/404Page.vue"),
       },
 
     ]
@@ -41,19 +52,19 @@ const routes = [
   },
   {
     path: "/admin",
-    component: () => import("../views/Dashboard.vue"),
+    component: () => import("../views/admin/Dashboard.vue"),
     children: [
       {
         path: "",
-        component: () => import("../views/HomeBack.vue"),
+        component: () => import("../views/admin/HomeBack.vue"),
       },
       {
         path: "products",
-        component: () => import("../views/ProductsBack.vue"),
+        component: () => import("../views/admin/ProductsBack.vue"),
       },
       {
         path: "orders",
-        component: () => import("../views/OrdersBack.vue"),
+        component: () => import("../views/admin/OrdersBack.vue"),
       },
 
     ]
@@ -63,9 +74,10 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-  scrollBehavior() {
+  linkActiveClass: "navbar-active",
+  scrollBehavior(to) {
     return {
-      top: 0,
+      top: to.fullPath.includes('order') ? 300 : 0,
     }
   },
 });

@@ -60,6 +60,7 @@
                     alt=""
                   />
                   <button
+                    type="button"
                     class="btn btn-outline-danger btn-sm d-block w-100"
                     @click="delPicture(key)"
                   >

@@ -22,6 +22,10 @@ import $pushToastMessage from '@/methods/pushToastMessage';
 
 import App from "./App.vue";
 import router from "./router";
+import FontAwesomeIcon from "@/utilities/fontawesome";
+
+
+
 
 // <-- for vee-validate 
 Object.keys(AllRules).forEach((rule) => {
@@ -40,6 +44,7 @@ app.config.globalProperties.$pushToastMessage = $pushToastMessage;
 
 app.use(router);
 app.use(VueAxios, axios);
+app.component("font-awesome-icon", FontAwesomeIcon);
 app.component('Loading', Loading);
 app.component('Form', Form);
 app.component('Field', Field);

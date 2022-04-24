@@ -1,9 +1,19 @@
 <template>
-  <div class="cart">
-    <div class="cover"></div>
+  <div class="container">
+    <div v-if="cartData.carts?.length == 0" class="tip">
+      <h4>
+        您的購物車空無一物～ <i class="bi bi-emoji-dizzy"></i><br />
+        <button class="btn btn-outline-danger mt-5" @click="toShopping">
+          <b
+            ><i class="bi bi-droplet-half" style="color: brown"></i>
+            酒單此處去
+            <i class="bi bi-droplet-half" style="color: brown"></i>
+          </b>
+        </button>
+      </h4>
+    </div>
 
-    <div class="container mt-5">
-      <h2>購物車列表</h2>
+    <div v-else class="checklout mt-5">
       <!-- 購物車列表 -->
       <div class="mt-4">
         <div class="text-end">
@@ -19,6 +29,7 @@
           <thead>
             <tr>
               <th></th>
+              <th>圖片</th>
               <th>品名</th>
               <th style="width: 150px">數量/單位</th>
               <th>單價</th>
@@ -36,6 +47,13 @@
                   >
                     x
                   </button>
+                </td>
+                <td>
+                  <img
+                    :src="item.product.imageUrl"
+                    style="width: 100px; background-color: wheat"
+                    alt=""
+                  />
                 </td>
                 <td>
                   {{ item.product.title }}
@@ -83,93 +101,6 @@
         </table>
       </div>
 
-      <!-- user表單填寫 -->
-      <!-- <div class="my-5 row justify-content-center">
-        <v-form
-          ref="form"
-          class="col-md-6"
-          v-slot="{ errors }"
-          @submit="submitOrder"
-        >
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <v-field
-              id="email"
-              name="email"
-              type="email"
-              class="form-control"
-              :class="{ 'is-invalid': errors['email'] }"
-              placeholder="請輸入 Email"
-              rules="email|required"
-              v-model="form.user.email"
-            ></v-field>
-            <error-message
-              name="email"
-              class="invalid-feedback"
-            ></error-message>
-          </div>
-
-          <div class="mb-3">
-            <label for="name" class="form-label">收件人姓名</label>
-            <v-field
-              id="name"
-              name="姓名"
-              type="text"
-              class="form-control"
-              :class="{ 'is-invalid': errors['姓名'] }"
-              placeholder="請輸入姓名"
-              rules="required"
-              v-model="form.user.name"
-            ></v-field>
-            <error-message name="姓名" class="invalid-feedback"></error-message>
-          </div>
-
-          <div class="mb-3">
-            <label for="tel" class="form-label">收件人電話</label>
-            <v-field
-              id="tel"
-              name="電話"
-              type="text"
-              class="form-control"
-              :class="{ 'is-invalid': errors['電話'] }"
-              placeholder="請輸入電話"
-              rules="required|min:8|max:10"
-              v-model="form.user.tel"
-            ></v-field>
-            <error-message name="電話" class="invalid-feedback"></error-message>
-          </div>
-
-          <div class="mb-3">
-            <label for="address" class="form-label">收件人地址</label>
-            <v-field
-              id="address"
-              name="地址"
-              type="text"
-              class="form-control"
-              :class="{ 'is-invalid': errors['地址'] }"
-              placeholder="請輸入地址"
-              rules="required"
-              v-model="form.user.address"
-            ></v-field>
-            <error-message name="地址" class="invalid-feedback"></error-message>
-          </div>
-
-          <div class="mb-3">
-            <label for="message" class="form-label">留言</label>
-            <textarea
-              id="message"
-              class="form-control"
-              cols="30"
-              rows="10"
-              v-model="form.message"
-            ></textarea>
-          </div>
-          <div class="text-end">
-            <button type="submit" class="btn btn-danger">送出訂單</button>
-          </div>
-        </v-form>
-      </div> -->
-
       <div class="my-5 row justify-content-center">
         <Form
           ref="form"
@@ -177,21 +108,6 @@
           v-slot="{ errors }"
           @submit="submitOrder"
         >
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <Field
-              id="email"
-              name="email"
-              type="email"
-              class="form-control"
-              :class="{ 'is-invalid': errors['email'] }"
-              placeholder="請輸入 Email"
-              rules="email|required"
-              v-model="form.user.email"
-            ></Field>
-            <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
-          </div>
-
           <div class="mb-3">
             <label for="name" class="form-label">收件人姓名</label>
             <Field
@@ -238,6 +154,21 @@
           </div>
 
           <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <Field
+              id="email"
+              name="email"
+              type="email"
+              class="form-control"
+              :class="{ 'is-invalid': errors['email'] }"
+              placeholder="請輸入 Email"
+              rules="email|required"
+              v-model="form.user.email"
+            ></Field>
+            <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+          </div>
+
+          <div class="mb-3">
             <label for="message" class="form-label">留言</label>
             <textarea
               name=""
@@ -258,12 +189,11 @@
 </template>
 
 <style lang="scss" scoped>
-.cover {
-  width: 100%;
-  min-height: 400px;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url(https://images.unsplash.com/photo-1580828343064-fde4fc206bc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80)
-      center/100%;
+.tip {
+  margin-top: 100px;
+  color: brown;
+  border: 2px double brown;
+  padding: 30px 20px 10px 20px;
 }
 .btn {
   transition: 0.3s all ease;
@@ -279,7 +209,9 @@ import emitter from "@/methods/mitt";
 export default {
   data() {
     return {
-      cartData: {},
+      cartData: {
+        carts:[],
+      },
       form: {
         user: {
           name: "",
@@ -307,10 +239,6 @@ export default {
           console.dir(err);
         });
     },
-    test(item) {
-      alert("change.!");
-      console.log("test", item);
-    },
     updateCart(item) {
       emitter.emit("loading");
       let tmpCart = {
@@ -335,6 +263,7 @@ export default {
         .delete(url)
         .then(() => {
           this.getCart();
+          emitter.emit("update-qty");
         })
         .catch((err) => {
           console.dir(err);
@@ -348,32 +277,31 @@ export default {
         .delete(url)
         .then(() => {
           this.getCart();
+          emitter.emit("update-qty");
         })
         .catch((err) => {
           console.dir(err);
           emitter.emit("un-loading");
         });
     },
+        toShopping(){
+      this.$router.push("/products");
+    },
+
     submitOrder() {
+      this.$emit("next");
       const order = this.form;
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`;
       this.$http
         .post(url, { data: order })
         .then((response) => {
-          alert(response.data.message);
-          // this.$refs.form.resetForm();
-          // this.form.message = "";
-          // this.getCart();
+          emitter.emit("update-qty");
           this.$router.push(`/orders/${response.data.orderId}`);
         })
         .catch((err) => {
           alert(err.data.message);
           this.getCart();
         });
-    },
-
-    testOrder() {
-      console.log("submit - ", this.form);
     },
   },
   mounted() {

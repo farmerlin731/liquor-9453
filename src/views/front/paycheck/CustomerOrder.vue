@@ -1,12 +1,12 @@
 <template>
   <div class="container mt-5">
-    <h4>訂單編號：{{ orderId }}</h4>
-    <div v-if="!orderData.user.email">
-      <h4 class="mt-5" style="color: coral; font-weight: bold">
-        Sorry, 查詢不到您的訂單喲！～ <i class="bi bi-emoji-dizzy"></i>
-      </h4>
+    <!-- <h4>訂單編號：{{ orderId }}</h4> -->
+    <div v-if="orderData.is_paid === true">
+      <h3 class="mt-5" style="color: coral; font-weight: bold">
+        <i class="bi bi-patch-check" style="color: green"></i> 交易完成
+      </h3>
     </div>
-    <div v-else class="my-5 row justify-content-center">
+    <div class="my-5 row justify-content-center">
       <form class="col-md-6" @submit.prevent="payOrder">
         <table class="table align-middle">
           <thead>
@@ -111,13 +111,14 @@ export default {
 
     payOrder() {
       emitter.emit("loading");
+      this.$emit("next");
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
       this.$http
         .post(url)
-        .then(() => {
-          //   this.isLoading = false;
-          alert('付款已完成！：）');
+        .then((response) => {
+          this.$pushToastMessage(response, "付款");
           this.getCusOrder();
+          this.$router.push(`/orders/${this.$route.params.orderId}`);
         })
         .catch((error) => {
           console.dir(error);

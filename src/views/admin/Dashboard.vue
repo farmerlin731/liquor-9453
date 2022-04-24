@@ -94,10 +94,10 @@ export default {
     this.checkToken();
     emitter.on("loading", () => {
       this.loadingStatus = true;
-    }),
-      emitter.on("un-loading", () => {
-        this.loadingStatus = false;
-      });
+    });
+    emitter.on("un-loading", () => {
+      this.loadingStatus = false;
+    });
   },
 };
 </script>

@@ -3,41 +3,36 @@
     <div class="cover"></div>
 
     <div v-if="tmpProd.title" class="container mt-5">
-      <h3 style="background-color: wheat; padding: 10px">
-        {{ this.tmpProd.title }}
-      </h3>
-      <div class="row" style="border: 2px solid wheat">
-        <div class="col-md-6">
-          <img
-            style="width: 100%; height: 500px;object-fit:cover"
-            :src="this.tmpProd.imageUrl"
-            alt=""
-          />
+      <div class="row">
+        <div class="col-md-5">
+          <img :src="this.tmpProd.imageUrl" alt="" />
         </div>
-        <div class="col-md-6" style="padding: 50px">
-          <p>{{ this.tmpProd.content }}</p>
-          <del class="h5 mt-3">原價 {{ this.tmpProd.origin_price }} 元</del>
-          <div class="h5 mt-3">
-            現在只要<b style="color: coral"> {{ this.tmpProd.price }} </b>元
-          </div>
-          <!-- <button @click="buyProd" type="button" class="btn btn-success">
-            我要購買
-          </button> -->
-          <div>
-            <div class="input-group mt-4">
-              <input
-                v-model.number="quantity"
-                type="number"
-                class="form-control"
-                min="1"
-              />
-              <button
-                type="button"
-                class="btn btn-outline-success"
-                @click="buyProd"
-              >
-                加入購物車
-              </button>
+        <div class="col-md-7">
+          <div class="content">
+            <h5>
+              {{ this.tmpProd.title }}
+            </h5>
+            <p>{{ this.tmpProd.content }}</p>
+            <del class="h5 mt-3">原價 {{ this.tmpProd.origin_price }} 元</del>
+            <div class="h5 mt-3">
+              現在只要<b style="color: coral"> {{ this.tmpProd.price }} </b>元
+            </div>
+            <div class="tmp">
+              <div class="input-group mt-4">
+                <input
+                  v-model.number="quantity"
+                  type="number"
+                  class="form-control"
+                  min="1"
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  @click="buyProd"
+                >
+                  加入購物車
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -55,9 +50,36 @@
       center/100%;
 }
 
-// .container{
-//   padding: 0;
-// }
+img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.content {
+  border: 2px solid wheat;
+  padding-bottom: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content h5 {
+  background-color: wheat;
+  color: brown;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.content p {
+  padding: 0px 30px;
+  margin-top: 20px;
+}
+
+.content .tmp {
+  width: 70%;
+}
 </style>
 <script>
 import emitter from "@/methods/mitt";
@@ -97,10 +119,12 @@ export default {
       this.$http
         .post(url, { data: tmpCart })
         .then(() => {
-          alert("成功加入購物車！ :)");
+          // this.$pushToastMessage(response, "加入購物車");
+          emitter.emit("update-qty");
           this.$router.push("/products/");
         })
         .catch((err) => {
+          alert("加入購物車失敗 :(");
           console.dir(err);
         });
     },

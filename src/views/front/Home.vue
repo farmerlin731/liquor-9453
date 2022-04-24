@@ -5,11 +5,11 @@
       <br />
 
       <router-link to="/products">
-        <button type="button" class="btn btn-warning">
+        <button type="button" class="btn">
           <b
-            ><i class="bi bi-book-half" style="color: green"></i>
-            想喝酒請點我
-            <i class="bi bi-book-half" style="color: green"></i>
+            ><i class="bi bi-droplet-half" style="color: brown"></i>
+            酒單此處去
+            <i class="bi bi-droplet-half" style="color: brown"></i>
           </b></button
       ></router-link>
     </div>
@@ -128,10 +128,15 @@
 .cover button {
   margin-top: 50px;
   transition: 0.3s all ease;
+  border:2px solid whitesmoke;
+  color:whitesmoke;
 }
 
 .cover button:hover {
-  transform: scale(1.2);
+  transform: scale(1.05);
+  background-color: whitesmoke;
+  color:brown
+  
 }
 
 .introduction {
