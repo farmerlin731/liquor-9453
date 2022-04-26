@@ -192,7 +192,6 @@ export default {
   mounted() {
     // mobile nav-bar fix
     const cancelBtnList = document.querySelectorAll(".cancel");
-    console.log(cancelBtnList);
     cancelBtnList.forEach((btn) => {
       btn.addEventListener("click", () => {
         if (window.innerWidth < 1000) {

@@ -5,11 +5,9 @@
       <div class="circle active">1</div>
       <div class="circle">2</div>
       <div class="circle">3</div>
-      <!-- <div class="circle">4</div> -->
     </div>
 
     <div class="test">
-      <!-- <div class="tmp-cont"><p>確認品項</p></div> -->
       <div class="tmp-cont"><p>填寫資料</p></div>
       <div class="tmp-cont"><p>確認資料</p></div>
       <div class="tmp-cont"><p>完成訂單</p></div>

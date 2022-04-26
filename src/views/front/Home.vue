@@ -177,9 +177,6 @@
 
 
 <style lang="scss" scoped>
-// * {
-//   border: 2px solid blue;
-// }
 .cover {
   width: 100%;
   height: 100vh;

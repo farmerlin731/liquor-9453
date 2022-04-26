@@ -12,7 +12,7 @@
     </div>
   </Loading>
 
-  <router-view v-slot="{ Component }">
+  <RouterView v-slot="{ Component }">
     <transition
       name="fade-transform"
       mode="out-in"
@@ -20,7 +20,7 @@
     >
       <component :is="Component"> </component>
     </transition>
-  </router-view>
+  </RouterView>
 
   <Footer/>
 </template>

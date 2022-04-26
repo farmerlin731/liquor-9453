@@ -157,11 +157,8 @@ export default {
   },
   computed: {
     changeType: function () {
-      return (timeStamp) => {
-        console.log(`the time is ${timeStamp}`);
-        console.log(typeof timeStamp);
+      return () => {
         let tmpTime = new Date(16000000* 1000).toISOString().split("T");
-        // let tmpTime = new Date(timeStamp.create_at * 1000).toISOString().split("T");
         return tmpTime[0];
       };
     },
@@ -172,8 +169,9 @@ export default {
   watch: {
     tmpOrder() {
       this.orderData = this.tmpOrder;
-      console.log(` 付款時間 - ${this.orderData.paid_date}`);
-      console.log(` 下單時間 - ${this.orderData.create_at}`);
+      // todo
+      // console.log(` 付款時間 - ${this.orderData.paid_date}`);
+      // console.log(` 下單時間 - ${this.orderData.create_at}`);
     },
   },
 };

@@ -5,7 +5,7 @@
     <div v-if="tmpProd.title" class="container mt-5">
       <div class="row">
         <div class="col-md-5">
-          <img :src="this.tmpProd.imageUrl" alt="" />
+          <img :src="this.tmpProd.imageUrl" alt="content-image" />
         </div>
         <div class="col-md-7">
           <div class="content">

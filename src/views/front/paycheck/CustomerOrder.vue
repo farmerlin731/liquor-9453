@@ -1,6 +1,5 @@
 <template>
   <div class="container mt-5">
-    <!-- <h4>訂單編號：{{ orderId }}</h4> -->
     <div v-if="orderData.is_paid === true">
       <h3 class="mt-5" style="color: coral; font-weight: bold">
         <i class="bi bi-patch-check" style="color: green"></i> 交易完成

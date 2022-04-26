@@ -201,7 +201,6 @@
 
 
 <script>
-// import Modal from "bootstrap/js/dist/modal";
 import modalMixin from "@/mixins/modalMixin.js";
 import emitter from "@/methods/mitt";
 
@@ -253,16 +252,9 @@ export default {
     delPicture(index) {
       this.prodData.imagesUrl.splice(index, 1);
     },
-    // openModal() {
-    //   this.modalDom.show();
-    // },
-    // hideModal() {
-    //   this.modalDom.hide();
-    // },
   },
   mounted() {
-    // console.log(`in mounted session!!`);
-    // this.modalDom = new Modal(this.$refs.modal);
+
   },
 };
 </script>

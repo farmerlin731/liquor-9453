@@ -19,9 +19,6 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">{{ item.title }}</h5>
-              <!-- <p class="card-text" style="height: 4.5rem; overflow: hidden">
-                {{ item.content }}
-              </p>            -->
             <div class="h5 mt-3">
               NTD <b style="color: coral"> {{ item.price }} </b> 元
             </div>

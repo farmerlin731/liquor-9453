@@ -126,7 +126,6 @@ export default {
     },
     openModal(item) {
       this.tmpOrder = { ...item };
-      console.log(this.tmpOrder);
       const orderComponent = this.$refs.orderModal;
       orderComponent.openModal();
     },

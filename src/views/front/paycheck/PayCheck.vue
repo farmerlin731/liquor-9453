@@ -4,7 +4,7 @@
     <div class="container mt-5">
       <h2 class=" mb-5"> 訂單資訊</h2>
       <ProgressBar :activeIndex="step" />
-      <router-view @next="next" ></router-view>
+      <RouterView @next="next" />
     </div>
   </div>
 </template>

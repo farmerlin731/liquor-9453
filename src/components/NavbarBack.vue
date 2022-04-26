@@ -62,28 +62,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      tmpdata: "hahaha",
-    };
-  },
-  methods: {
-    test() {
-      console.log(this.$refs.toggleBtn);
-      this.$refs.toggleBtn.click();
-    },
-  },
   mounted() {
-    // this.test();
-    console.log(window.innerWidth);
-    // console.log(this.tmpdata);
-    // 自己寫這段真爽...雖然有點醜 XD
-
+    // for hidding dropdown
     const cancelBtnList = document.querySelectorAll(".cancel");
-    console.log(cancelBtnList);
     cancelBtnList.forEach((btn) => {
       btn.addEventListener("click", () => {
-        // console.log("pushItem!!!");
         if (window.innerWidth < 1000) {
           this.$refs.toggleBtn.click();
         }

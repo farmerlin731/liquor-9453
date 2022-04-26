@@ -27,7 +27,6 @@ export default {};
 .footer {
   margin-top: 50px;
   text-align: left;
-  // background-color: rgba(10, 66, 117, 0.6);
   background-color: rgb(186, 84, 84);
 }
 

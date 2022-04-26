@@ -1,8 +1,8 @@
 <template>
-  <Loading :active="loadingStatus"></Loading>
-  <ToastMessage></ToastMessage>
-  <Navbar @logout="logout"></Navbar>
-  <router-view v-slot="{ Component }">
+  <Loading :active="loadingStatus" />
+  <ToastMessage />
+  <Navbar @logout="logout" />
+  <RouterView v-slot="{ Component }">
     <transition
       name="fade-transform"
       mode="out-in"
@@ -10,8 +10,7 @@
     >
       <component :is="Component"> </component>
     </transition>
-  </router-view>
-  <!-- <router-view></router-view> -->
+  </RouterView>
 </template>
 
 

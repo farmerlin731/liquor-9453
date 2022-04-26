@@ -1,13 +1,5 @@
 <template>
-  <router-view />
-
-    <!-- <router-view v-slot="{Component}">
-    <transition name="fade-transform" mode="out-in" enter-from-class="fade-transform-enter">
-      <component :is="Component"> </component>
-    </transition>
-  </router-view> -->
-
-
+  <RouterView />
 </template>
 
 <style lang="scss">
