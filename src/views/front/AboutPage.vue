@@ -47,7 +47,7 @@
                 aria-expanded="false"
                 aria-controls="panelsStayOpen-collapseOne"
               >
-                請問有外送服務嗎？
+                Ｑ1： 請問有外送服務嗎？
               </button>
             </h2>
             <div
@@ -56,7 +56,8 @@
               aria-labelledby="panelsStayOpen-headingOne"
             >
               <div class="accordion-body">
-                沒辦法喲！都要到店內親自取貨唷！
+                沒辦法喲！依據法令，酒類商品無法外送，因為不能確認買家的年齡...
+                需要準備身分證，親自到店內取貨喲！
               </div>
             </div>
           </div>
@@ -72,7 +73,7 @@
                 aria-expanded="false"
                 aria-controls="panelsStayOpen-collapseOne"
               >
-                會有優惠活動嗎？
+                Ｑ2：會有優惠活動嗎？
               </button>
             </h2>
             <div
@@ -81,7 +82,7 @@
               aria-labelledby="panelsStayOpen-headingOne"
             >
               <div class="accordion-body">
-                <strong>當然！敬請期待～</strong> 
+                當然！只要老闆家有囍事（ex:養的母雞下蛋了），都會在店裡舉辦優惠活動普天同慶！敬請期待～
               </div>
             </div>
           </div>
@@ -97,7 +98,7 @@
                 aria-expanded="false"
                 aria-controls="panelsStayOpen-collapseOne"
               >
-                請問老闆單身嗎？
+                Ｑ3：請問老闆單身嗎？
               </button>
             </h2>
             <div
@@ -106,7 +107,7 @@
               aria-labelledby="panelsStayOpen-headingOne"
             >
               <div class="accordion-body">
-                <code>Vip15才能詢問此問題唷～</code>
+                <code>《 此回答需升級至 Vip15 才能解鎖觀看 》</code>
               </div>
             </div>
           </div>
