@@ -1,4 +1,4 @@
-# vue-hex-week7
+# Liquor Shop Project @ vue & pinia
 
 ## Project setup
 ```
