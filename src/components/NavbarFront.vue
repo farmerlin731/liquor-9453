@@ -8,7 +8,7 @@
         <router-link class="navbar-brand" to="/">
           <i class="fas fa-spinner fa-spin"></i>
 
-          <i class="fa-solid fa-spinner"></i>9453 - 酒肆吾觴訂酒網
+          <i class="fa-solid fa-spinner"></i>V2版要加油啦！
           <i class="fa-solid fa-spinner"></i>
           <font-awesome-icon icon="fa-solid fa-spinner" />
         </router-link>
